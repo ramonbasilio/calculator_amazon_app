@@ -13,7 +13,19 @@ class Calculus {
     required double productValue,
     required double tax,
   }) {
-    double result =  (0.87 * productValue) - tax;
-     return double.parse(result.toStringAsFixed(2));
+    double result = (0.87 * productValue) - tax;
+    return double.parse(result.toStringAsFixed(2));
+  }
+
+  static double taxTotal(
+      {required double productValue, required double income}) {
+    double result = productValue - income;
+    return double.parse(result.toStringAsFixed(2));
+  }
+
+  static double taxPercent(
+      {required double productValue, required double taxTotal}) {
+    double result = (taxTotal / productValue) * 100;
+    return double.parse(result.toStringAsFixed(2));
   }
 }

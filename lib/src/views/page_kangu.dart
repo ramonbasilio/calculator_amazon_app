@@ -7,7 +7,8 @@ class PageKangu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Envio Pŕoprio'),
+        centerTitle: true,
+        title: const Text('Envio Próprio - Em desenvolvimento...'),
       ),
     );
   }

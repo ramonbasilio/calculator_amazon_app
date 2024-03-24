@@ -11,7 +11,9 @@ class PageDBA2 extends StatefulWidget {
 class _PageDBA2State extends State<PageDBA2> {
   double valueProduct = 0.0;
   double gainValue = 0.0;
-  double tax = 0.0;
+  double tax = 20.45;
+  double taxTotal = 0.0;
+  double taxPercent = 0.0;
   TextEditingController costValueController = TextEditingController();
   TextEditingController gainValueController = TextEditingController();
   int selectedRadio = 1;
@@ -26,7 +28,6 @@ class _PageDBA2State extends State<PageDBA2> {
               padding: const EdgeInsets.all(10),
               height: 720,
               width: double.maxFinite,
-              color: Colors.grey.shade300,
               child: SizedBox(
                 height: 250,
                 child: Column(
@@ -41,7 +42,8 @@ class _PageDBA2State extends State<PageDBA2> {
                         'Dica: se o custo do produto for menor à R\$ 55,08 com um lucro de 10%, utilize a calcuador DBA < R\$ 79.'),
                     TextFormField(
                       controller: costValueController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
                       decoration: InputDecoration(
                         prefix: const Text('R\$ '),
                         suffixIcon: IconButton(
@@ -57,7 +59,8 @@ class _PageDBA2State extends State<PageDBA2> {
                     ),
                     TextFormField(
                       controller: gainValueController,
-                      keyboardType: TextInputType.number,
+                      keyboardType: const TextInputType.numberWithOptions(
+                          signed: true, decimal: true),
                       decoration: InputDecoration(
                         prefix: const Text('% '),
                         suffixIcon: IconButton(
@@ -126,7 +129,11 @@ class _PageDBA2State extends State<PageDBA2> {
                                 ),
                           Text('Valor Receita R\$ $incomeValue',
                               style: const TextStyle(fontSize: 20)),
-                          Text('Valor lucro R\$ $gainValue',
+                          Text('Valor Lucro R\$ $gainValue',
+                              style: const TextStyle(fontSize: 20)),
+                          Text('Valor Taxas Totais R\$ $taxTotal',
+                              style: const TextStyle(fontSize: 20)),
+                          Text('Percentual taxa $taxPercent%',
                               style: const TextStyle(fontSize: 20)),
                         ],
                       ),
@@ -154,8 +161,14 @@ class _PageDBA2State extends State<PageDBA2> {
                                         .replaceAll(RegExp(r','), '.')));
                                 incomeValue = Calculus.incomeValue(
                                   productValue: valueProduct,
-                                  tax: 5.5,
+                                  tax: tax,
                                 );
+                                taxTotal = Calculus.taxTotal(
+                                    productValue: valueProduct,
+                                    income: incomeValue);
+                                taxPercent = Calculus.taxPercent(
+                                    productValue: valueProduct,
+                                    taxTotal: taxTotal);
                               });
                             }
                           },
@@ -169,6 +182,7 @@ class _PageDBA2State extends State<PageDBA2> {
                               gainValueController.clear();
                               costValueController.clear();
                               valueProduct = 0.0;
+                              incomeValue = 0.0;
                               gainValue = 0.0;
                             });
                           },
