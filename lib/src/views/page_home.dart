@@ -2,6 +2,7 @@ import 'package:calculator_amazon_app/src/views/page_DBA_1.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_2.dart';
 import 'package:calculator_amazon_app/src/views/page_FBA.dart';
 import 'package:calculator_amazon_app/src/views/page_kangu.dart';
+import 'package:calculator_amazon_app/src/views/page_DBA1_final.dart';
 import 'package:flutter/material.dart';
 
 class PageHome extends StatefulWidget {
@@ -14,7 +15,7 @@ class PageHome extends StatefulWidget {
 class _PageHomeState extends State<PageHome> {
   int indexCurrent = 0;
   final List<Widget> screens = [
-    const PageDBA1(),
+    PageDBA1Final(),
     const PageDBA2(),
     const PageFBA(),
     const PageKangu()
