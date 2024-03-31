@@ -2,27 +2,51 @@ import 'package:flutter/material.dart';
 
 class CalculusProviderDBA1 extends ChangeNotifier {
   double _gain = 0.00;
-  double get gainValue => _gain;
+  double get gainValueDBA1 => _gain;
 
   double _gainReal = 0.00;
-  double get gainValueReal => _gainReal;
+  double get gainValueRealDBA1 => _gainReal;
 
   double _cost = 0.00;
-  double get costValue => _cost;
+  double get costValueDBA1 => _cost;
 
   double _productValue = 0.00;
-  double get productValue => _productValue;
+  double get productValueDBA1 => _productValue;
 
   double _income = 0.00;
-  double get incomeValue => _income;
+  double get incomeValueDBA1 => _income;
 
   double _taxTotal = 0.00;
-  double get taxTotalValue => _taxTotal;
+  double get taxTotalValueDBA1 => _taxTotal;
 
   double _taxPercent = 0.00;
-  double get taxPercentValue => _taxPercent;
+  double get taxPercentValueDBA1 => _taxPercent;
 
-  void clearAll() {
+  double _resultMargin = 0.0;
+  double get resultMarginDBA1 => _resultMargin;
+
+  double _eudoraValue = 0.0;
+  double get eudoraValueDBA1 => _eudoraValue;
+
+  double _margin = 0.0;
+  double get marginValueDBA1 => _margin;
+
+  void setEudoraValueFunc(double value) {
+    _eudoraValue = value;
+    notifyListeners();
+  }
+
+  void setMarginValueFunc(double value) {
+    _margin = value;
+    notifyListeners();
+  }
+
+  void clearResultFunc() {
+    _resultMargin = 0.0;
+    notifyListeners();
+  }
+
+  void clearAllFunc() {
     _cost = 0.00;
     _gain = 0.00;
     _productValue = 0.00;
@@ -33,27 +57,27 @@ class CalculusProviderDBA1 extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setCost(double costSet) {
+  void setCostFunc(double costSet) {
     _cost = costSet;
     notifyListeners();
   }
 
-  void setGain(double gainSet) {
+  void setGainFunc(double gainSet) {
     _gain = gainSet;
     notifyListeners();
   }
 
-  void zeroCost() {
+  void zeroCostFunc() {
     _cost = 0.00;
     notifyListeners();
   }
 
-  void zeroGain() {
+  void zeroGainFunc() {
     _gain = 0.00;
     notifyListeners();
   }
 
-  void productValueDBA1({
+  void productValueDBA1Func({
     required double taxIn,
     required double costIn,
     required double gainIn,
@@ -63,7 +87,7 @@ class CalculusProviderDBA1 extends ChangeNotifier {
     notifyListeners();
   }
 
-  void incomeValueDBA1({
+  void incomeValueDBA1Func({
     required double productValue,
     required double tax,
   }) {
@@ -72,7 +96,7 @@ class CalculusProviderDBA1 extends ChangeNotifier {
     notifyListeners();
   }
 
-  void gainValueRealDBA1({
+  void gainValueRealDBA1Func({
     required double productValue,
     required double gain,
     required double cost,
@@ -82,7 +106,7 @@ class CalculusProviderDBA1 extends ChangeNotifier {
     notifyListeners();
   }
 
-  void taxTotalDBA1({
+  void taxTotalDBA1Func({
     required double productValue,
     required double income,
   }) {
@@ -91,12 +115,18 @@ class CalculusProviderDBA1 extends ChangeNotifier {
     notifyListeners();
   }
 
-  taxPercentDBA1({
+  void taxPercentDBA1Func({
     required double productValue,
     required double taxTotal,
   }) {
     double result = (taxTotal / productValue) * 100;
     _taxPercent = double.parse(result.toStringAsFixed(2));
+    notifyListeners();
+  }
+
+  void calcMarginFunc({required double eudoraValue, required double margin}) {
+    double result = eudoraValue * (100 - margin) / 100;
+    _resultMargin = double.parse(result.toStringAsFixed(2));
     notifyListeners();
   }
 }

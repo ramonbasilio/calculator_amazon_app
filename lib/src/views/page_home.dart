@@ -1,9 +1,12 @@
+import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_1.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_2.dart';
 import 'package:calculator_amazon_app/src/views/page_FBA.dart';
 import 'package:calculator_amazon_app/src/views/page_kangu.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA1_final.dart';
+import 'package:calculator_amazon_app/src/widget/container_eudora_calc_margin.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PageHome extends StatefulWidget {
   const PageHome({super.key});
@@ -21,12 +24,15 @@ class _PageHomeState extends State<PageHome> {
     const PageKangu()
   ];
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar:
             AppBar(centerTitle: true, title: const Text('Calculadora Amazon')),
         body: screens[indexCurrent],
+
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.black,

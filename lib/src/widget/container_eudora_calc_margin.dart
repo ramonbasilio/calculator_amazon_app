@@ -1,20 +1,21 @@
 import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
+import 'package:calculator_amazon_app/src/provider/providerDBA1.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 
 class ContainerCalcEudoraMargin extends StatelessWidget {
   const ContainerCalcEudoraMargin({
     super.key,
-    required this.readProvider2,
+    required this.readProvider,
     required this.eudoraValueController,
-    required this.watchProvider2,
+    required this.watchProvider,
     required this.percentController,
     required this.resultController,
   });
 
-  final CalcEudora readProvider2;
+  final CalculusProviderDBA1 readProvider;
   final TextEditingController eudoraValueController;
-  final CalcEudora watchProvider2;
+  final CalculusProviderDBA1 watchProvider;
   final TextEditingController percentController;
   final TextEditingController resultController;
 
@@ -27,21 +28,20 @@ class ContainerCalcEudoraMargin extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           SizedBox(
-            width: 150,
+            width: 120,
             child: TextFormField(
               onChanged: (String value) {
                 if (value.isEmpty) {
-                  readProvider2.clearResult();
-                  readProvider2.setMarginValue(0.0);
+                  readProvider.clearResultFunc();
+                  readProvider.setMarginValueFunc(0.0);
                 }
-    
+
                 if (value.isNotEmpty) {
-                  readProvider2.setEudoraValue(double.parse(
-                      eudoraValueController.text
-                          .replaceAll(',', '.')));
-                  readProvider2.calcMargin(
-                      eudoraValue: watchProvider2.eudoraValue,
-                      margin: watchProvider2.marginValue);
+                  readProvider.setEudoraValueFunc(double.parse(
+                      eudoraValueController.text.replaceAll(',', '.')));
+                  readProvider.calcMarginFunc(
+                      eudoraValue: watchProvider.eudoraValueDBA1,
+                      margin: watchProvider.marginValueDBA1);
                 }
               },
               controller: eudoraValueController,
@@ -50,9 +50,9 @@ class ContainerCalcEudoraMargin extends StatelessWidget {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     onPressed: () {
-                      readProvider2.clearResult();
+                      readProvider.clearResultFunc();
                       eudoraValueController.clear();
-                      readProvider2.setEudoraValue(0.0);
+                      readProvider.setEudoraValueFunc(0.0);
                     },
                     icon: const Icon(Icons.clear)),
                 helperText: 'Valor Eudora R\$',
@@ -66,16 +66,15 @@ class ContainerCalcEudoraMargin extends StatelessWidget {
             child: TextFormField(
               onChanged: (String value) {
                 if (value.isEmpty) {
-                  readProvider2.clearResult();
-                  readProvider2.setMarginValue(0.0);
+                  readProvider.clearResultFunc();
+                  readProvider.setMarginValueFunc(0.0);
                 }
                 if (value.isNotEmpty) {
-                  readProvider2.setMarginValue(double.parse(
-                      percentController.text
-                          .replaceAll(',', '.')));
-                  readProvider2.calcMargin(
-                      eudoraValue: watchProvider2.eudoraValue,
-                      margin: watchProvider2.marginValue);
+                  readProvider.setMarginValueFunc(double.parse(
+                      percentController.text.replaceAll(',', '.')));
+                  readProvider.calcMarginFunc(
+                      eudoraValue: watchProvider.eudoraValueDBA1,
+                      margin: watchProvider.marginValueDBA1);
                 }
               },
               controller: percentController,
@@ -84,9 +83,9 @@ class ContainerCalcEudoraMargin extends StatelessWidget {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     onPressed: () {
-                      readProvider2.clearResult();
+                      readProvider.clearResultFunc();
                       percentController.clear();
-                      readProvider2.setMarginValue(0.0);
+                      readProvider.setMarginValueFunc(0.0);
                     },
                     icon: const Icon(Icons.clear)),
                 helperText: 'Margin %',
@@ -95,7 +94,7 @@ class ContainerCalcEudoraMargin extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 100,
+            width: 120,
             height: 80,
             child: TextFormField(
               readOnly: true,
@@ -106,7 +105,7 @@ class ContainerCalcEudoraMargin extends StatelessWidget {
                 suffixIcon: IconButton(
                     onPressed: () async {
                       FlutterClipboard.copy(
-                          watchProvider2.resultMargin.toString());
+                          watchProvider.resultMarginDBA1.toString());
                     },
                     icon: const Icon(Icons.copy)),
                 helperText: 'Resultado R\$',

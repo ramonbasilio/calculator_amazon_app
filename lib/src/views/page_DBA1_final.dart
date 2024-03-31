@@ -4,6 +4,7 @@ import 'package:calculator_amazon_app/src/utils/calculus.dart';
 import 'package:calculator_amazon_app/src/utils/converter.dart';
 import 'package:calculator_amazon_app/src/widget/container_calc.dart';
 import 'package:calculator_amazon_app/src/widget/container_eudora_calc_margin.dart';
+import 'package:calculator_amazon_app/src/widget/container_eudora_calc_margin_setState.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,15 +22,12 @@ class PageDBA1Final extends StatelessWidget {
   Widget build(BuildContext context) {
     var readProvider = context.read<CalculusProviderDBA1>();
     var watchProvider = context.watch<CalculusProviderDBA1>();
-    var readProvider2 = context.read<CalcEudora>();
-    var watchProvider2 = context.watch<CalcEudora>();
-    resultController.text = watchProvider2.resultMargin.toString();
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
             padding: const EdgeInsets.all(10),
-            height: 750,
+            height: MediaQuery.of(context).size.height * 0.82,
             width: double.infinity,
             child: SizedBox(
               height: 250,
@@ -42,16 +40,14 @@ class PageDBA1Final extends StatelessWidget {
                   ),
                   const Text(
                       'Dica: se o custo do produto for igual à R\$ 55,08 com um lucro de 10%, o valor do anuncio será de R\$ 78,98. Valores acima disso, o anúncio seŕa maior que R\$ 79,00.'),
-                  ContainerCalcEudoraMargin(
-                    readProvider2: readProvider2,
+                  ContainerCalcEudoraMarginSetState(
                     eudoraValueController: eudoraValueController,
-                    watchProvider2: watchProvider2,
                     percentController: percentController,
                     resultController: resultController,
                   ),
                   TextFormField(
                     onChanged: (_) {
-                      readProvider.setCost(double.parse(
+                      readProvider.setCostFunc(double.parse(
                           costValueController.text.replaceAll(',', '.')));
                     },
                     controller: costValueController,
@@ -61,7 +57,7 @@ class PageDBA1Final extends StatelessWidget {
                       prefix: const Text('R\$ '),
                       suffixIcon: IconButton(
                           onPressed: () {
-                            readProvider.zeroCost();
+                            readProvider.zeroCostFunc();
                             costValueController.clear();
                           },
                           icon: const Icon(Icons.clear)),
@@ -71,7 +67,7 @@ class PageDBA1Final extends StatelessWidget {
                   ),
                   TextFormField(
                     onChanged: (_) {
-                      readProvider.setGain(double.parse(
+                      readProvider.setGainFunc(double.parse(
                           gainValueController.text.replaceAll(',', '.')));
                     },
                     controller: gainValueController,
@@ -81,7 +77,7 @@ class PageDBA1Final extends StatelessWidget {
                       prefix: const Text('% '),
                       suffixIcon: IconButton(
                           onPressed: () {
-                            readProvider.zeroGain();
+                            readProvider.zeroGainFunc();
                             gainValueController.clear();
                           },
                           icon: const Icon(Icons.clear)),
@@ -99,79 +95,93 @@ class PageDBA1Final extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        readProvider.productValue > 79
+                        readProvider.productValueDBA1 > 79
                             ? Text(
-                                'Valor Anúncio R\$ ${ConverterClass.convertDouble(watchProvider.productValue)} \nUTILIZE A CALCULADORA - DBA MAIOR QUE R\$ 79,00',
+                                'Valor Anúncio R\$ ${ConverterClass.convertDouble(watchProvider.productValueDBA1)} \nUTILIZE A CALCULADORA - DBA MAIOR QUE R\$ 79,00',
                                 style: const TextStyle(
                                     color: Colors.red, fontSize: 20))
                             : Text(
-                                'Valor Anúncio R\$ ${ConverterClass.convertDouble(watchProvider.productValue)}',
+                                'Valor Anúncio R\$ ${ConverterClass.convertDouble(watchProvider.productValueDBA1)}',
                                 style: const TextStyle(fontSize: 20),
                               ),
                         Text(
-                            'Valor Receita R\$ ${ConverterClass.convertDouble(watchProvider.incomeValue)}',
+                            'Valor Receita R\$ ${ConverterClass.convertDouble(watchProvider.incomeValueDBA1)}',
                             style: const TextStyle(fontSize: 20)),
                         Text(
-                            'Valor Lucro R\$ ${ConverterClass.convertDouble(watchProvider.gainValueReal)}',
+                            'Valor Lucro R\$ ${ConverterClass.convertDouble(watchProvider.gainValueRealDBA1)}',
                             style: const TextStyle(fontSize: 20)),
                         Text(
-                            'Valor Taxas Totais R\$ ${ConverterClass.convertDouble(watchProvider.taxTotalValue)}',
+                            'Valor Taxas Totais R\$ ${ConverterClass.convertDouble(watchProvider.taxTotalValueDBA1)}',
                             style: const TextStyle(fontSize: 20)),
                         Text(
-                            'Percentual taxa ${ConverterClass.convertDouble(watchProvider.taxPercentValue)}%',
+                            'Percentual taxa ${ConverterClass.convertDouble(watchProvider.taxPercentValueDBA1)}%',
                             style: const TextStyle(fontSize: 20)),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          if (gainValueController.text.isNotEmpty ||
-                              costValueController.text.isNotEmpty) {
-                            readProvider.productValueDBA1(
-                              taxIn: 5.5,
-                              costIn: watchProvider.costValue,
-                              gainIn: watchProvider.gainValue,
-                            );
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              gainValueController.clear();
+                              costValueController.clear();
+                              readProvider.clearAllFunc();
+                            },
+                            child: const Text('Limpar')),
+                      ),
+                      SizedBox(
+                        child: ElevatedButton(
+                            onPressed: () {
+                              if (gainValueController.text.isNotEmpty ||
+                                  costValueController.text.isNotEmpty) {
+                                readProvider.productValueDBA1Func(
+                                  taxIn: 5.5,
+                                  costIn: watchProvider.costValueDBA1,
+                                  gainIn: watchProvider.gainValueDBA1,
+                                );
 
-                            readProvider.incomeValueDBA1(
-                              productValue: watchProvider.productValue,
-                              tax: 5.5,
-                            );
+                                readProvider.incomeValueDBA1Func(
+                                  productValue: watchProvider.productValueDBA1,
+                                  tax: 5.5,
+                                );
 
-                            readProvider.gainValueRealDBA1(
-                              productValue: watchProvider.productValue,
-                              gain: watchProvider.gainValue,
-                              cost: watchProvider.costValue,
-                            );
+                                readProvider.gainValueRealDBA1Func(
+                                  productValue: watchProvider.productValueDBA1,
+                                  gain: watchProvider.gainValueDBA1,
+                                  cost: watchProvider.costValueDBA1,
+                                );
 
-                            readProvider.taxTotalDBA1(
-                              productValue: watchProvider.productValue,
-                              income: watchProvider.incomeValue,
-                            );
+                                readProvider.taxTotalDBA1Func(
+                                  productValue: watchProvider.productValueDBA1,
+                                  income: watchProvider.incomeValueDBA1,
+                                );
 
-                            readProvider.taxPercentDBA1(
-                                productValue: watchProvider.productValue,
-                                taxTotal: watchProvider.taxTotalValue);
-                          }
-                        },
-                        child: const Text('Calcular')),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          gainValueController.clear();
-                          costValueController.clear();
-                          readProvider.clearAll();
-                        },
-                        child: const Text('Limpar')),
-                  ),
+                                readProvider.taxPercentDBA1Func(
+                                    productValue: watchProvider.productValueDBA1,
+                                    taxTotal: watchProvider.taxTotalValueDBA1);
+                              }
+                            },
+                            child: const Text('Calcular')),
+                      ),
+                    ],
+                  )
                 ],
               ),
             )),
       ),
+    );
+  }
+
+  _showModalBottomSheet(BuildContext context) {
+    return showBottomSheet(
+      context: context,
+      builder: (context) {
+        return Container(
+          color: Colors.amber.shade100,
+        );
+      },
     );
   }
 }

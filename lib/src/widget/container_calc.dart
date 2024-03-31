@@ -16,7 +16,6 @@ class ContainerCalc extends StatelessWidget {
   Widget build(BuildContext contextContainer) {
     var readProvider = contextContainer.read<CalcEudora>();
     var watchProvider = contextContainer.watch<CalcEudora>();
-    resultController.text = watchProvider.resultMargin.toString();
 
     return Container(
       height: 100,

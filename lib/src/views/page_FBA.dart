@@ -1,4 +1,5 @@
 import 'package:calculator_amazon_app/src/utils/calculus.dart';
+import 'package:calculator_amazon_app/src/widget/container_eudora_calc_margin_setState.dart';
 import 'package:flutter/material.dart';
 
 class PageFBA extends StatefulWidget {
@@ -16,6 +17,9 @@ class _PageFBAState extends State<PageFBA> {
   double taxPercent = 0.0;
   TextEditingController costValueController = TextEditingController();
   TextEditingController gainValueController = TextEditingController();
+    TextEditingController eudoraValueController = TextEditingController();
+  TextEditingController percentController = TextEditingController();
+  TextEditingController resultController = TextEditingController();
   int selectedRadio = 1;
   double incomeValue = 0.0;
 
@@ -48,6 +52,11 @@ class _PageFBAState extends State<PageFBA> {
                       'FBA',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    ContainerCalcEudoraMarginSetState(
+                      eudoraValueController: eudoraValueController,
+                      percentController: percentController,
+                      resultController: resultController,
                     ),
                     TextFormField(
                       controller: costValueController,
