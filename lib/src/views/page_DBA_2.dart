@@ -33,7 +33,7 @@ class _PageDBA2State extends State<PageDBA2> {
         child: SingleChildScrollView(
           child: Container(
               padding: const EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height * 0.82,
+              height: 800,
               width: double.maxFinite,
               child: SizedBox(
                 height: 250,
@@ -87,13 +87,20 @@ class _PageDBA2State extends State<PageDBA2> {
                       ),
                     ),
                     Container(
+                      padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(5)),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Text('Taxa DBA'),
                           ListTile(
+                            minVerticalPadding: 0,
+                            contentPadding: EdgeInsets.all(0),
+                            
+                            minTileHeight: 0,
+                            minLeadingWidth: 0,
                             title: const Text('500g ~ 1kg R\$ 20,45'),
                             leading: Radio(
                                 value: 1,
@@ -106,6 +113,10 @@ class _PageDBA2State extends State<PageDBA2> {
                                 }),
                           ),
                           ListTile(
+                                                     minVerticalPadding: 0,
+                            contentPadding: EdgeInsets.all(0),
+                            minTileHeight: 0,
+                            minLeadingWidth: 0,
                             title: const Text('1kg ~ 2kg R\$ 21,45'),
                             leading: Radio(
                                 value: 2,
@@ -117,36 +128,6 @@ class _PageDBA2State extends State<PageDBA2> {
                                   });
                                 }),
                           ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(10),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(5)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          (valueProduct < 79 && valueProduct != 0)
-                              ? Text(
-                                  'Valor Anúncio R\$ $valueProduct \nUTILIZE A CALCULADORA - DBA MENOR QUE R\$ 79,00',
-                                  style: const TextStyle(
-                                      color: Colors.red, fontSize: 20))
-                              : Text(
-                                  'Valor Anúncio R\$ $valueProduct',
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                          Text('Valor Receita R\$ $incomeValue',
-                              style: const TextStyle(fontSize: 20)),
-                          Text('Valor Lucro R\$ $gainValue',
-                              style: const TextStyle(fontSize: 20)),
-                          Text('Valor Taxas Totais R\$ $taxTotal',
-                              style: const TextStyle(fontSize: 20)),
-                          Text('Percentual taxa $taxPercent%',
-                              style: const TextStyle(fontSize: 20)),
                         ],
                       ),
                     ),
@@ -202,6 +183,36 @@ class _PageDBA2State extends State<PageDBA2> {
                               child: const Text('Calcular')),
                         ),
                       ],
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(5)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          (valueProduct < 79 && valueProduct != 0)
+                              ? Text(
+                                  'Valor Anúncio R\$ $valueProduct \nUTILIZE A CALCULADORA - DBA MENOR QUE R\$ 79,00',
+                                  style: const TextStyle(
+                                      color: Colors.red, fontSize: 20))
+                              : Text(
+                                  'Valor Anúncio R\$ $valueProduct',
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                          Text('Valor Receita R\$ $incomeValue',
+                              style: const TextStyle(fontSize: 20)),
+                          Text('Valor Lucro R\$ $gainValue',
+                              style: const TextStyle(fontSize: 20)),
+                          Text('Valor Taxas Totais R\$ $taxTotal',
+                              style: const TextStyle(fontSize: 20)),
+                          Text('Percentual taxa $taxPercent%',
+                              style: const TextStyle(fontSize: 20)),
+                        ],
+                      ),
                     ),
                   ],
                 ),

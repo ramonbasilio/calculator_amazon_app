@@ -27,7 +27,7 @@ class PageDBA1Final extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
             padding: const EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.82,
+            height: 700,
             width: double.infinity,
             child: SizedBox(
               height: 250,

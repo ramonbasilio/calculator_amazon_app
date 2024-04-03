@@ -3,6 +3,7 @@ import 'package:calculator_amazon_app/src/provider/providerDBA1.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_1.dart';
 import 'package:calculator_amazon_app/src/views/page_home.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA1_final.dart';
+import 'package:calculator_amazon_app/src/views/page_teste.dart';
 import 'package:calculator_amazon_app/src/widget/container_calc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,13 +26,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Calculadora Amazon - Beta',
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.grey.shade300,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
         useMaterial3: true,
       ),
-      home: PageHome(),
+      home: PageTeste(),
     );
   }
 }
