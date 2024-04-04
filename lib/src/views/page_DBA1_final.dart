@@ -1,3 +1,4 @@
+import 'package:calculator_amazon_app/src/constants/colors.dart';
 import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
 import 'package:calculator_amazon_app/src/provider/providerDBA1.dart';
 import 'package:calculator_amazon_app/src/utils/calculus.dart';
@@ -35,54 +36,83 @@ class PageDBA1Final extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   const Text(
-                    'DBA Anúncio Menor R\$ 79,00',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    'DBA Menor R\$ 79',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
                   ),
                   const Text(
-                      'Dica: se o custo do produto for igual à R\$ 55,08 com um lucro de 10%, o valor do anuncio será de R\$ 78,98. Valores acima disso, o anúncio seŕa maior que R\$ 79,00.'),
+                    'Dica: se o custo do produto for igual à R\$ 55,08 com um lucro de 10%, o valor do anuncio será de R\$ 78,98. Valores acima disso, o anúncio seŕa maior que R\$ 79,00.',
+                    style: TextStyle(color: Colors.white38),
+                  ),
                   ContainerCalcEudoraMarginSetState(
                     eudoraValueController: eudoraValueController,
                     percentController: percentController,
                     resultController: resultController,
                   ),
                   TextFormField(
-                    onChanged: (_) {
-                      readProvider.setCostFunc(double.parse(
-                          costValueController.text.replaceAll(',', '.')));
+                    style: const TextStyle(color: Colors.white, fontSize: 25),
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        readProvider.setCostFunc(double.parse(
+                            costValueController.text.replaceAll(',', '.')));
+                      }
                     },
                     controller: costValueController,
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorsConst.FUNDOCINZAFORMULARIO,
                       prefix: const Text('R\$ '),
+                      prefixStyle:
+                          TextStyle(color: ColorsConst.FONTECINZACLARO),
                       suffixIcon: IconButton(
+                          color: Colors.white,
                           onPressed: () {
                             readProvider.zeroCostFunc();
                             costValueController.clear();
                           },
                           icon: const Icon(Icons.clear)),
                       labelText: 'Valor do custo do produto',
+                      labelStyle: TextStyle(color: ColorsConst.FONTECINZACLARO),
                       border: const OutlineInputBorder(),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
                     ),
                   ),
                   TextFormField(
-                    onChanged: (_) {
-                      readProvider.setGainFunc(double.parse(
-                          gainValueController.text.replaceAll(',', '.')));
+                    style: const TextStyle(color: Colors.white, fontSize: 25),
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        readProvider.setGainFunc(double.parse(
+                            gainValueController.text.replaceAll(',', '.')));
+                      }
                     },
                     controller: gainValueController,
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),
                     decoration: InputDecoration(
+                      filled: true,
+                      fillColor: ColorsConst.FUNDOCINZAFORMULARIO,
                       prefix: const Text('% '),
+                                            prefixStyle:
+                          TextStyle(color: ColorsConst.FONTECINZACLARO),
                       suffixIcon: IconButton(
+                          color: Colors.white,
                           onPressed: () {
                             readProvider.zeroGainFunc();
                             gainValueController.clear();
                           },
                           icon: const Icon(Icons.clear)),
                       labelText: 'Valor do lucro (ref. 10%)',
+                      labelStyle: TextStyle(color: ColorsConst.FONTECINZACLARO),
                       border: const OutlineInputBorder(),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white),
+                      ),
                     ),
                   ),
                   Container(
@@ -159,7 +189,8 @@ class PageDBA1Final extends StatelessWidget {
                                 );
 
                                 readProvider.taxPercentDBA1Func(
-                                    productValue: watchProvider.productValueDBA1,
+                                    productValue:
+                                        watchProvider.productValueDBA1,
                                     taxTotal: watchProvider.taxTotalValueDBA1);
                               }
                             },

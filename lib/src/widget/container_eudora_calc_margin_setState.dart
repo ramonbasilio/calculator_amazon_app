@@ -1,3 +1,4 @@
+import 'package:calculator_amazon_app/src/constants/colors.dart';
 import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
 import 'package:calculator_amazon_app/src/provider/providerDBA1.dart';
 import 'package:clipboard/clipboard.dart';
@@ -35,6 +36,7 @@ class _ContainerCalcEudoraMarginState
           SizedBox(
             width: 120,
             child: TextFormField(
+              style: const TextStyle(color: Colors.white, fontSize: 25),
               onChanged: (String value) {
                 if (value.isEmpty) {
                   setState(() {
@@ -60,7 +62,10 @@ class _ContainerCalcEudoraMarginState
               keyboardType: const TextInputType.numberWithOptions(
                   signed: true, decimal: true),
               decoration: InputDecoration(
+                filled: true,
+                fillColor: ColorsConst.FUNDOCINZAFORMULARIO,
                 suffixIcon: IconButton(
+                    color: Colors.white,
                     onPressed: () {
                       setState(() {
                         widget.resultController.text = '';
@@ -69,14 +74,18 @@ class _ContainerCalcEudoraMarginState
                     },
                     icon: const Icon(Icons.clear)),
                 helperText: 'Valor Eudora R\$',
+                helperStyle: TextStyle(color: ColorsConst.FONTECINZACLARO),
                 border: const OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
             ),
           ),
           SizedBox(
             width: 100,
-            height: 80,
             child: TextFormField(
+              style: const TextStyle(color: Colors.white, fontSize: 25),
               onChanged: (String value) {
                 if (value.isEmpty) {
                   setState(() {
@@ -103,7 +112,10 @@ class _ContainerCalcEudoraMarginState
               keyboardType: const TextInputType.numberWithOptions(
                   signed: true, decimal: true),
               decoration: InputDecoration(
+                filled: true,
+                fillColor: ColorsConst.FUNDOCINZAFORMULARIO,
                 suffixIcon: IconButton(
+                    color: Colors.white,
                     onPressed: () {
                       setState(() {
                         widget.resultController.text = '';
@@ -111,21 +123,28 @@ class _ContainerCalcEudoraMarginState
                       });
                     },
                     icon: const Icon(Icons.clear)),
-                helperText: 'Margin %',
+                helperText: 'Marge %',
+                helperStyle: TextStyle(color: ColorsConst.FONTECINZACLARO),
                 border: const OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
             ),
           ),
           SizedBox(
             width: 120,
-            height: 80,
             child: TextFormField(
+              style: const TextStyle(color: Colors.white, fontSize: 25),
               readOnly: true,
               controller: widget.resultController,
               keyboardType: const TextInputType.numberWithOptions(
                   signed: true, decimal: true),
               decoration: InputDecoration(
+                filled: true,
+                fillColor: ColorsConst.FUNDOCINZAFORMULARIO,
                 suffixIcon: IconButton(
+                    color: Colors.white,
                     onPressed: () async {
                       if (widget.resultController.text.isNotEmpty) {
                         FlutterClipboard.copy(widget.resultController.text);
@@ -133,7 +152,11 @@ class _ContainerCalcEudoraMarginState
                     },
                     icon: const Icon(Icons.copy)),
                 helperText: 'Resultado R\$',
+                helperStyle: TextStyle(color: ColorsConst.FONTECINZACLARO),
                 border: const OutlineInputBorder(),
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
               ),
             ),
           ),

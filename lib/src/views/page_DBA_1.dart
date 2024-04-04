@@ -1,3 +1,4 @@
+import 'package:calculator_amazon_app/src/constants/colors.dart';
 import 'package:calculator_amazon_app/src/utils/calculus.dart';
 import 'package:flutter/material.dart';
 
@@ -37,6 +38,7 @@ class _PageDBA1State extends State<PageDBA1> {
                   const Text(
                       'Dica: se o custo do produto for igual à R\$ 55,08 com um lucro de 10%, o valor do anuncio será de R\$ 78,98. Valores acima disso, o anúncio seŕa maior que R\$ 79,00.'),
                   TextFormField(
+                  
                     controller: costValueController,
                     keyboardType: const TextInputType.numberWithOptions(
                         signed: true, decimal: true),

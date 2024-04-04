@@ -12,10 +12,12 @@ class PageTeste extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder:(context) => PageHome()),);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageHome()),
+              );
             },
             child: Container(
-              
               width: double.maxFinite,
               margin: const EdgeInsets.all(10),
               decoration: BoxDecoration(

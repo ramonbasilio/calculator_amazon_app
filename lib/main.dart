@@ -1,3 +1,4 @@
+import 'package:calculator_amazon_app/src/constants/colors.dart';
 import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
 import 'package:calculator_amazon_app/src/provider/providerDBA1.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_1.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Calculadora Amazon - Beta',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey.shade300,
+        scaffoldBackgroundColor: ColorsConst.FUNDOCINZAPAGINA,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
         useMaterial3: true,
       ),

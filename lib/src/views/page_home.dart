@@ -1,3 +1,4 @@
+import 'package:calculator_amazon_app/src/constants/colors.dart';
 import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_1.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_2.dart';
@@ -24,20 +25,21 @@ class _PageHomeState extends State<PageHome> {
     const PageKangu()
   ];
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-        appBar:
-            AppBar(centerTitle: true, title: const Text('Calculadora Amazon')),
+        appBar: AppBar(
+            centerTitle: true,
+            title: Image.asset(
+              'assets/amazon_logo.png',
+              width: 120,
+            )),
         body: screens[indexCurrent],
-
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.black,
           iconSize: 0,
-          backgroundColor: Colors.blue[700],
+          backgroundColor: ColorsConst.FUNDOCINZAFORMULARIO,
           type: BottomNavigationBarType.fixed,
           currentIndex: indexCurrent,
           onTap: (int value) {
