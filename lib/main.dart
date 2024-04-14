@@ -1,6 +1,7 @@
 import 'package:calculator_amazon_app/src/constants/colors.dart';
 import 'package:calculator_amazon_app/src/provider/providerCalcEudora.dart';
 import 'package:calculator_amazon_app/src/provider/providerDBA1.dart';
+import 'package:calculator_amazon_app/src/views/amazon/amazon.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA_1.dart';
 import 'package:calculator_amazon_app/src/views/page_home.dart';
 import 'package:calculator_amazon_app/src/views/page_DBA1_final.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.lightBlueAccent),
         useMaterial3: true,
       ),
-      home: PageTeste(),
+      home: Amazon(),
     );
   }
 }

@@ -42,10 +42,10 @@ class PageDBA1Final extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
-                  const Text(
-                    'Dica: se o custo do produto for igual à R\$ 55,08 com um lucro de 10%, o valor do anuncio será de R\$ 78,98. Valores acima disso, o anúncio seŕa maior que R\$ 79,00.',
-                    style: TextStyle(color: Colors.white38),
-                  ),
+                  // const Text(
+                  //   'Dica: se o custo do produto for igual à R\$ 55,08 com um lucro de 10%, o valor do anuncio será de R\$ 78,98. Valores acima disso, o anúncio seŕa maior que R\$ 79,00.',
+                  //   style: TextStyle(color: Colors.white38),
+                  // ),
                   ContainerCalcEudoraMarginSetState(
                     eudoraValueController: eudoraValueController,
                     percentController: percentController,
@@ -98,7 +98,7 @@ class PageDBA1Final extends StatelessWidget {
                       filled: true,
                       fillColor: ColorsConst.FUNDOCINZAFORMULARIO,
                       prefix: const Text('% '),
-                                            prefixStyle:
+                      prefixStyle:
                           TextStyle(color: ColorsConst.FONTECINZACLARO),
                       suffixIcon: IconButton(
                           color: Colors.white,
@@ -202,17 +202,6 @@ class PageDBA1Final extends StatelessWidget {
               ),
             )),
       ),
-    );
-  }
-
-  _showModalBottomSheet(BuildContext context) {
-    return showBottomSheet(
-      context: context,
-      builder: (context) {
-        return Container(
-          color: Colors.amber.shade100,
-        );
-      },
     );
   }
 }
